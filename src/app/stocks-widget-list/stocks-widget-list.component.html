@@ -1,0 +1,13 @@
+<div fxLayout="row wrap">
+    <div
+  *ngFor="let quote of quotes"
+  fxFlex="25"
+  fxFlex.md="33"
+  fxFlex.sm="50"
+  fxFlex.xs="100"
+  fxLayout="column"
+  style="padding: 5px;"
+>
+  <app-stocks-widget [quote]="quote"></app-stocks-widget>
+</div>
+</div>
