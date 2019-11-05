@@ -1,33 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from './material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-// import * as fromComponents from './components';
+import * as fromComponents from './components';
 
 @NgModule({
-  declarations: [],
+  declarations: [...fromComponents.components],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    BrowserModule,
-    BrowserAnimationsModule,
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    ...fromComponents.components
   ]
 })
 export class SharedModule { }
