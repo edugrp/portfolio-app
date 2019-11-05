@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Stock, StockTicker } from './../models/stock';
 
-import * as stockList from './sp500_companies.json';
+import stockList from './sp500_companies.json';
 
 @Injectable({
   providedIn: 'root'

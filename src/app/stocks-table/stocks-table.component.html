@@ -43,6 +43,7 @@
           placeholder="Stock symbol"
           (click)="$event.stopPropagation()"
           [(ngModel)]="addStockSymbol"
+          [matAutocomplete]="autoStockList"
         />
         <button
           mat-button
@@ -61,8 +62,13 @@
           color="primary"
           (click)="addStock()"
         >
-        <mat-icon>add</mat-icon>
-      </button>
+          <mat-icon>add</mat-icon>
+        </button>
+        <mat-autocomplete #autoStockList="matAutocomplete">
+          <mat-option *ngFor="let stock of stockList" [value]="stock.Symbol">
+            {{ stock.Symbol }}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
     </mat-menu>
   </div>

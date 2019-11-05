@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Quote } from './../models/stock';
+import { Quote } from '@core/models/stock';
 
 @Component({
   selector: 'app-stocks-widget',

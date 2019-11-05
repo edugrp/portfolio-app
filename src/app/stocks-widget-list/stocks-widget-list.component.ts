@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote } from './../models/stock';
-import { StocksService } from '../services/stocks.service';
+import { Quote } from '@core/models/stock';
+import { StocksService } from '@core/services/stocks.service';
 
 @Component({
   selector: 'app-stocks-widget-list',

@@ -1,14 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from './material-module';
+import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
 import { MyWalletComponent } from './my-wallet/my-wallet.component';
@@ -30,14 +26,9 @@ import { StocksWidgetListComponent } from './stocks-widget-list/stocks-widget-li
     StocksWidgetListComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    MaterialModule
+    SharedModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

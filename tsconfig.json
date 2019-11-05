@@ -1,7 +1,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    "paths": {
+      "@env": ["environments/environment"],
+      "@shared/*": ["app/shared/*"],
+      "@core/*": ["app/core/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -11,6 +16,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es2015",
     "typeRoots": [
       "node_modules/@types"

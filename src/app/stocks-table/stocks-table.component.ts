@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Quote } from '../models/stock';
-import { StocksService } from '../services/stocks.service';
+import { Component, OnInit } from '@angular/core';
+import { Quote, Stock } from '@core/models/stock';
+import { StocksService } from '@core/services/stocks.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-stocks-table',
@@ -14,12 +15,17 @@ export class StocksTableComponent implements OnInit {
 
   quotes: Quote[] = [];
   addStockSymbol = '';
+  stockList: Stock[] = [];
 
   constructor(
-    private stocksService: StocksService
+    private stocksService: StocksService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
+    this.stocksService.getAll().subscribe(list => {
+      this.stockList = list;
+    });
     this.updateQuotes();
   }
 
@@ -27,7 +33,7 @@ export class StocksTableComponent implements OnInit {
     this.quotes = [];
     for (const symbol of this.watchList) {
       this.stocksService.getTicker(symbol).subscribe(ticker => {
-        console.log(symbol + ' ticker', ticker);
+        // console.log(symbol + ' ticker', ticker);
         this.quotes = this.quotes.concat(ticker.quote);
       });
     }
@@ -36,9 +42,16 @@ export class StocksTableComponent implements OnInit {
   public addStock = () => {
     if (this.addStockSymbol.length > 0) {
       this.watchList.push(this.addStockSymbol);
+      this.openSnackBar(this.addStockSymbol + ' added!', 'X');
       this.updateQuotes();
       this.addStockSymbol = '';
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CryptosService } from '../services/cryptos.service';
+import { CryptosService } from '@core/services/cryptos.service';
 
 @Component({
   selector: 'app-cryptos',
