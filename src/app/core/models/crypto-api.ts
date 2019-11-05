@@ -1,11 +1,11 @@
-export class Crypto {
+export class CryptoApi {
   Name: string;
   Symbol: string;
 
   constructor() {}
 }
 
-export interface CryptoTicker {
+export interface CryptoTickerApi {
   source: string;
   coin_id: string;
   success: boolean;

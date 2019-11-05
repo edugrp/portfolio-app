@@ -1,18 +1,18 @@
-export interface Stock {
+export interface StockApi {
   Name: string;
   Sector: string;
   Symbol: string;
 }
 
-export class StockTicker {
-  quote: Quote;
+export class StockTickerApi {
+  quote: QuoteApi;
   bids: any[];
   asks: any[];
-  trades: Trade[];
-  systemEvent: SystemEvent;
+  trades: TradeApi[];
+  systemEvent: SystemEventApi;
 }
 
-export interface Quote {
+export interface QuoteApi {
   symbol: string;
   companyName: string;
   primaryExchange: string;
@@ -55,12 +55,12 @@ export interface Quote {
   ytdChange: number;
 }
 
-export interface SystemEvent {
+export interface SystemEventApi {
   systemEvent: string;
   timestamp: number;
 }
 
-export interface Trade {
+export interface TradeApi {
   price: number;
   size: number;
   tradeId: number;

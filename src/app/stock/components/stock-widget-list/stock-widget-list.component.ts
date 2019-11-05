@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote } from '@core/models/stock';
+import { QuoteApi } from '@core/models/stock-api';
 import { StockService } from '@core/services/stock.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { StockService } from '@core/services/stock.service';
 export class StockWidgetListComponent implements OnInit {
 
   watchList = ['GOOGL', 'AMD', 'FB', 'AAPL', 'F', 'MCD', 'BKNG'];
-  quotes: Quote[] = [];
+  quotes: QuoteApi[] = [];
 
   constructor(
     private stockService: StockService

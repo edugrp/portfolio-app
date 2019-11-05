@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Quote } from '@core/models/stock';
+import { QuoteApi } from '@core/models/stock-api';
 
 @Component({
   selector: 'app-stock-widget',
@@ -9,18 +9,18 @@ import { Quote } from '@core/models/stock';
 })
 export class StockWidgetComponent implements OnInit {
 
-  @Input() quote: Quote;
+  @Input() quote: QuoteApi;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  public changeInValue = (quote: Quote): number => {
+  public changeInValue = (quote: QuoteApi): number => {
     return quote.latestPrice - quote.close;
   }
 
-  public changeInPercentage = (quote: Quote): number => {
+  public changeInPercentage = (quote: QuoteApi): number => {
     return quote.latestPrice / quote.close - 1;
   }
 

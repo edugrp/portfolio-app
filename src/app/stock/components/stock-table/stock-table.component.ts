@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Quote, Stock } from '@core/models/stock';
+import { QuoteApi, StockApi } from '@core/models/stock-api';
 import { StockService } from '@core/services/stock.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,9 +13,9 @@ export class StockTableComponent implements OnInit {
   displayedColumns: string[] = ['symbol', 'companyName', 'latestPrice', 'latestTime'];
   watchList = ['GOOG', 'FB', 'AAPL', 'MSFT'];
 
-  quotes: Quote[] = [];
+  quotes: QuoteApi[] = [];
   addStockSymbol = '';
-  stockList: Stock[] = [];
+  stockList: StockApi[] = [];
 
   constructor(
     private stockService: StockService,
