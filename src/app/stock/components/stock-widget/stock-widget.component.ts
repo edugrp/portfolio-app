@@ -3,11 +3,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Quote } from '@core/models/stock';
 
 @Component({
-  selector: 'app-stocks-widget',
-  templateUrl: './stocks-widget.component.html',
-  styleUrls: ['./stocks-widget.component.css']
+  selector: 'app-stock-widget',
+  templateUrl: './stock-widget.component.html',
+  styleUrls: ['./stock-widget.component.css']
 })
-export class StocksWidgetComponent implements OnInit {
+export class StockWidgetComponent implements OnInit {
 
   @Input() quote: Quote;
 

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Crypto, CryptoTicker } from './../models/crypto';
+import { Crypto, CryptoTicker } from '@core/models/crypto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CryptosService {
+export class CryptoService {
 
   constructor(private http: HttpClient) { }
 

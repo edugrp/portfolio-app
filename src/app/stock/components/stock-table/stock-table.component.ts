@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Quote, Stock } from '@core/models/stock';
-import { StocksService } from '@core/services/stocks.service';
+import { StockService } from '@core/services/stock.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-stocks-table',
-  templateUrl: './stocks-table.component.html',
-  styleUrls: ['./stocks-table.component.css']
+  selector: 'app-stock-table',
+  templateUrl: './stock-table.component.html',
+  styleUrls: ['./stock-table.component.css']
 })
-export class StocksTableComponent implements OnInit {
+export class StockTableComponent implements OnInit {
 
   displayedColumns: string[] = ['symbol', 'companyName', 'latestPrice', 'latestTime'];
   watchList = ['GOOG', 'FB', 'AAPL', 'MSFT'];
@@ -18,12 +18,12 @@ export class StocksTableComponent implements OnInit {
   stockList: Stock[] = [];
 
   constructor(
-    private stocksService: StocksService,
+    private stockService: StockService,
     private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    this.stocksService.getAll().subscribe(list => {
+    this.stockService.getAll().subscribe(list => {
       this.stockList = list;
     });
     this.updateQuotes();
@@ -32,7 +32,7 @@ export class StocksTableComponent implements OnInit {
   public updateQuotes = () => {
     this.quotes = [];
     for (const symbol of this.watchList) {
-      this.stocksService.getTicker(symbol).subscribe(ticker => {
+      this.stockService.getTicker(symbol).subscribe(ticker => {
         // console.log(symbol + ' ticker', ticker);
         this.quotes = this.quotes.concat(ticker.quote);
       });

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Stock, StockTicker } from './../models/stock';
+import { Stock, StockTicker } from '@core/models/stock';
 
 import stockList from './sp500_companies.json';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StocksService {
+export class StockService {
 
   constructor(private http: HttpClient) { }
 

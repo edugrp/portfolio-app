@@ -1,16 +1,16 @@
-import { StocksComponent } from './stocks/stocks.component';
-import { StocksTableComponent } from './stocks-table/stocks-table.component';
-import { StocksWidgetComponent } from './stocks-widget/stocks-widget.component';
-import { StocksWidgetListComponent } from './stocks-widget-list/stocks-widget-list.component';
+import { StockDashboardComponent } from './stock-dashboard/stock-dashboard.component';
+import { StockTableComponent } from './stock-table/stock-table.component';
+import { StockWidgetComponent } from './stock-widget/stock-widget.component';
+import { StockWidgetListComponent } from './stock-widget-list/stock-widget-list.component';
 
 export const components: any[] = [
-  StocksComponent,
-  StocksTableComponent,
-  StocksWidgetComponent,
-  StocksWidgetListComponent
+  StockDashboardComponent,
+  StockTableComponent,
+  StockWidgetComponent,
+  StockWidgetListComponent
 ];
 
-export * from './stocks/stocks.component';
-export * from './stocks-table/stocks-table.component';
-export * from './stocks-widget/stocks-widget.component';
-export * from './stocks-widget-list/stocks-widget-list.component';
+export * from './stock-dashboard/stock-dashboard.component';
+export * from './stock-table/stock-table.component';
+export * from './stock-widget/stock-widget.component';
+export * from './stock-widget-list/stock-widget-list.component';

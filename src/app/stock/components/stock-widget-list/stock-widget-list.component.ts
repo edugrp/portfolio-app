@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Quote } from '@core/models/stock';
-import { StocksService } from '@core/services/stocks.service';
+import { StockService } from '@core/services/stock.service';
 
 @Component({
-  selector: 'app-stocks-widget-list',
-  templateUrl: './stocks-widget-list.component.html',
-  styleUrls: ['./stocks-widget-list.component.css']
+  selector: 'app-stock-widget-list',
+  templateUrl: './stock-widget-list.component.html',
+  styleUrls: ['./stock-widget-list.component.css']
 })
-export class StocksWidgetListComponent implements OnInit {
+export class StockWidgetListComponent implements OnInit {
 
   watchList = ['GOOGL', 'AMD', 'FB', 'AAPL', 'F', 'MCD', 'BKNG'];
   quotes: Quote[] = [];
 
   constructor(
-    private stocksService: StocksService
+    private stockService: StockService
   ) {
     // this.stocksService.getAll().subscribe(list => console.log('Stock List', list));
     for (const symbol of this.watchList) {
-      this.stocksService.getTicker(symbol).subscribe(ticker => {
+      this.stockService.getTicker(symbol).subscribe(ticker => {
         console.log(symbol + ' ticker', ticker);
         this.quotes.push(ticker.quote);
       });

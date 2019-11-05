@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { StocksComponent } from './components';
+import { StockDashboardComponent } from './components';
 import { MainLayoutComponent } from '@shared/components';
 
 const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    children: [{ path: '', component: StocksComponent }]
+    children: [{ path: '', component: StockDashboardComponent }]
   }
 ];
 
