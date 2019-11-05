@@ -1,5 +1,5 @@
-import { CryptosComponent } from './cryptos/cryptos.component';
+import { CryptoDashboardComponent } from './crypto-dashboard/crypto-dashboard.component';
 
-export const components: any[] = [CryptosComponent];
+export const components: any[] = [CryptoDashboardComponent];
 
-export * from './cryptos/cryptos.component';
+export * from './crypto-dashboard/crypto-dashboard.component';
