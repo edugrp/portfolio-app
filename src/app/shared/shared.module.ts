@@ -7,9 +7,12 @@ import { MaterialModule } from './material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import * as fromComponents from './components';
+import { CardDetailComponent } from './components/card-detail/card-detail.component';
+import { CardListComponent } from './components/card-list/card-list.component';
+import { WatchTableComponent } from './components/watch-table/watch-table.component';
 
 @NgModule({
-  declarations: [...fromComponents.components],
+  declarations: [...fromComponents.components, CardDetailComponent, CardListComponent, WatchTableComponent],
   imports: [
     CommonModule,
     RouterModule,

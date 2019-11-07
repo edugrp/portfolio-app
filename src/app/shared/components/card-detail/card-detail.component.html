@@ -1,0 +1,22 @@
+<mat-card *ngIf="quote" class="mat-elevation-z8">
+  <mat-card-header>
+    <mat-card-title>
+      <span class="mat-h2">{{ quote.asset.symbol }} :: {{ quote.latestPrice | currency }}</span>
+      <p class="mat-h3">
+        {{ quote.changeInValue() | currency }} ({{
+          quote.changeInPercentage() | percent: ".2"
+        }})
+      </p>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ quote.asset.name }}</p>
+    <p *ngIf="quote.low">
+      Range: {{ quote.low | currency }} - {{ quote.high | currency }}
+    </p>
+    <p>Updated: {{ quote.latestTime }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Remove</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetTypes } from '@core/models/asset';
 
 @Component({
   selector: 'app-stock-dashboard',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockDashboardComponent implements OnInit {
 
+  tableList = ['GOOGL', 'AAPL', 'MSFT', 'FB'];
+  cardList = ['GOOGL', 'AMD', 'AAPL', 'F', 'MCD', 'BKNG', 'FB'];
+  assetType = AssetTypes.STOCK;
 
   constructor() { }
 

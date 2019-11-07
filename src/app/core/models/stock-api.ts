@@ -4,7 +4,7 @@ export interface StockApi {
   Symbol: string;
 }
 
-export class StockTickerApi {
+export interface StockTickerApi {
   quote: QuoteApi;
   bids: any[];
   asks: any[];

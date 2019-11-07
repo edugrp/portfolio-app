@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CryptoService } from '@core/services/crypto.service';
+import { AssetTypes } from '@core/models/asset';
 
 @Component({
   selector: 'app-crypto-dashboard',
@@ -8,11 +8,12 @@ import { CryptoService } from '@core/services/crypto.service';
 })
 export class CryptoDashboardComponent implements OnInit {
 
+  tableList = ['BTC', 'LTC'];
+  cardList = ['BTC', 'LTC', 'DOGE', 'ETH', 'XRP'];
+  assetType = AssetTypes.CRYPTO;
+
   constructor(
-    private cryptoService: CryptoService
   ) {
-    this.cryptoService.getAll().subscribe(list => console.log('Crypto List', list));
-    this.cryptoService.getTicker('btc').subscribe(ticker => console.log('BTC ticker', ticker));
   }
 
   ngOnInit() {

@@ -1,28 +1,42 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { StockApi, StockTickerApi } from '@core/models/stock-api';
-
-import stockList from './sp500_companies.json';
+import { RapidApiService } from './rapid-api.service.js';
+import { Asset, AssetTypes, Quote } from '@core/models/asset.js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
+  constructor(private rapidApiService: RapidApiService) {}
 
-  constructor(private http: HttpClient) { }
-
-  public getAll = (): Observable<StockApi[]> => {
-    return of(stockList);
+  public getAll = (): Observable<Asset[]> => {
+    return this.rapidApiService.getStockAll().pipe(
+      map((list: StockApi[]) => {
+        const assetList: Asset[] = [];
+        for (const item of list) {
+          assetList.push(new Asset(item.Symbol, item.Name, AssetTypes.STOCK));
+        }
+        return assetList;
+      })
+    );
   }
 
-  public getTicker = (symbol: string): Observable<StockTickerApi> => {
-    const url = 'https://investors-exchange-iex-trading.p.rapidapi.com/stock/' + symbol + '/book';
-    const headers = new  HttpHeaders().set('x-rapidapi-host', 'investors-exchange-iex-trading.p.rapidapi.com')
-                                      .set('x-rapidapi-key', '329ec522d2mshb54fc83b8df4ad3p124762jsnc7119e95b2fa');
-
-    return this.http.get<StockTickerApi>(url, { headers });
+  public getTicker = (symbol: string): Observable<Quote> => {
+    return this.rapidApiService.getStockTicker(symbol).pipe(
+      map((stockTickerApi: StockTickerApi) => {
+        const quote: Quote = new Quote(new Asset(stockTickerApi.quote.symbol, stockTickerApi.quote.companyName, AssetTypes.STOCK));
+        quote.open = stockTickerApi.quote.open;
+        quote.close = stockTickerApi.quote.close;
+        quote.high = stockTickerApi.quote.high;
+        quote.low = stockTickerApi.quote.low;
+        quote.previousClose = stockTickerApi.quote.previousClose;
+        quote.latestPrice = stockTickerApi.quote.latestPrice;
+        quote.latestTime = stockTickerApi.quote.latestTime;
+        return quote;
+      })
+    );
   }
-
 }

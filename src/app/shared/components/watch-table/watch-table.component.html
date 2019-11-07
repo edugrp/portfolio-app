@@ -1,0 +1,83 @@
+<div class="mat-elevation-z8 apperance">
+    <table mat-table [dataSource]="quotes">
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef>Symbol</th>
+        <td mat-cell *matCellDef="let element">{{ element.asset.symbol }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.asset.name }}</td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="latestPrice">
+        <th mat-header-cell *matHeaderCellDef>Latest Price</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.latestPrice | currency }}
+        </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="change">
+        <th mat-header-cell *matHeaderCellDef>% Change</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.changeInPercentage() | percent:'.2' }}
+        </td>
+      </ng-container>
+
+      <!-- Updated Column -->
+      <ng-container matColumnDef="latestTime">
+        <th mat-header-cell *matHeaderCellDef>Updated at</th>
+        <td mat-cell *matCellDef="let element">{{ element.latestTime }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div style="width: 100%;">
+      <button mat-mini-fab [mat-menu-trigger-for]="newAssetMenu">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-menu #newAssetMenu="matMenu">
+        <mat-form-field class="addAssetMenu">
+          <input
+            matInput
+            type="text"
+            placeholder="Asset Symbol"
+            (click)="$event.stopPropagation()"
+            [(ngModel)]="addAsset"
+            [matAutocomplete]="autoList"
+          />
+          <button
+            mat-button
+            *ngIf="addAsset"
+            matSuffix
+            mat-icon-button
+            (click)="$event.stopPropagation(); addAsset = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <button
+            mat-button
+            *ngIf="addAsset"
+            matSuffix
+            mat-icon-button
+            color="primary"
+            (click)="onAddAsset()"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+          <mat-autocomplete #autoList="matAutocomplete">
+            <mat-option *ngFor="let asset of assetList" [value]="asset.symbol">
+              {{ asset.symbol }} - {{ asset.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </mat-menu>
+    </div>
+  </div>
