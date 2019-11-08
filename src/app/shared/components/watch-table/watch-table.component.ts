@@ -21,7 +21,6 @@ export class WatchTableComponent implements OnInit {
   @Input() assetType: AssetTypes;
 
   quotes: Quote[] = [];
-  addAsset = '';
   assetList: Asset[] = [];
 
   constructor(
@@ -60,12 +59,11 @@ export class WatchTableComponent implements OnInit {
     }
   }
 
-  public onAddAsset = () => {
-    if (this.addAsset.length > 0) {
-      this.watchList.push(this.addAsset);
-      this.openSnackBar(this.addAsset + ' added!', 'X');
+  public onAddAsset = (newAsset) => {
+    if (newAsset.length > 0) {
+      this.watchList.push(newAsset);
+      this.openSnackBar(newAsset + ' added!', 'X');
       this.updateQuotes();
-      this.addAsset = '';
     }
   };
 

@@ -1,0 +1,42 @@
+<div style="width: 100%;">
+  <button mat-mini-fab [mat-menu-trigger-for]="newAssetMenu">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <mat-menu #newAssetMenu="matMenu">
+    <mat-form-field class="addAssetMenu">
+      <input
+        matInput
+        type="text"
+        placeholder="Asset Symbol"
+        (click)="$event.stopPropagation()"
+        [(ngModel)]="addAsset"
+        [matAutocomplete]="autoList"
+      />
+      <button
+        mat-button
+        *ngIf="addAsset"
+        matSuffix
+        mat-icon-button
+        (click)="$event.stopPropagation(); addAsset = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <button
+        mat-button
+        *ngIf="addAsset"
+        matSuffix
+        mat-icon-button
+        color="primary"
+        (click)="onAddAsset()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-autocomplete #autoList="matAutocomplete">
+        <mat-option *ngFor="let asset of assetList" [value]="asset.symbol">
+          {{ asset.symbol }} - {{ asset.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </mat-menu>
+</div>
