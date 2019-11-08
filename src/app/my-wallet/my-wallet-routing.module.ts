@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MyWalletComponent } from './components';
+import { MyWalletDashboardComponent } from './components';
 import { MainLayoutComponent } from '@shared/components';
 
 const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    children: [{ path: '', component: MyWalletComponent }]
+    children: [{ path: '', component: MyWalletDashboardComponent }]
   }
 ];
 

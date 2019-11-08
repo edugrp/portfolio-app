@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +17,7 @@ import { AppComponent } from './app.component';
     CoreModule,
     BrowserModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({})
   ],
   exports: [
     BrowserModule,

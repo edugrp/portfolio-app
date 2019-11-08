@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Asset, Quote, AssetTypes } from '@core/models/asset';
 import { StockService } from '@core/services/stock.service';
 import { CryptoService } from '@core/services/crypto.service';
@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './watch-table.component.html',
   styleUrls: ['./watch-table.component.css']
 })
-export class WatchTableComponent implements OnInit {
+export class WatchTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = [
     'symbol',
     'name',
@@ -19,6 +19,8 @@ export class WatchTableComponent implements OnInit {
   ];
   @Input() watchList: string[];
   @Input() assetType: AssetTypes;
+  @Output() onNewAsset = new EventEmitter();
+
 
   quotes: Quote[] = [];
   assetList: Asset[] = [];
@@ -42,6 +44,14 @@ export class WatchTableComponent implements OnInit {
     this.updateQuotes();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['watchList']) {
+      if (changes['watchList'].previousValue) {
+        this.updateQuotes();
+      }
+    }
+  }
+
   public updateQuotes = () => {
     this.quotes = [];
     if (this.watchList != null && this.assetType != null) {
@@ -61,11 +71,12 @@ export class WatchTableComponent implements OnInit {
 
   public onAddAsset = (newAsset) => {
     if (newAsset.length > 0) {
-      this.watchList.push(newAsset);
+      this.onNewAsset.emit(newAsset);
+      // this.watchList.push(newAsset);
       this.openSnackBar(newAsset + ' added!', 'X');
-      this.updateQuotes();
+      // this.updateQuotes();
     }
-  };
+  }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

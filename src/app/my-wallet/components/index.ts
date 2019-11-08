@@ -1,6 +1,6 @@
-import { MyWalletComponent } from './my-wallet/my-wallet.component';
+import { MyWalletDashboardComponent } from './my-wallet-dashboard/my-wallet-dashboard.component';
 
 
-export const components: any[] = [MyWalletComponent];
+export const components: any[] = [MyWalletDashboardComponent];
 
-export * from './my-wallet/my-wallet.component';
+export * from './my-wallet-dashboard/my-wallet-dashboard.component';
