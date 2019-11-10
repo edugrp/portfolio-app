@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { State, cryptoFeatureKey } from './crypto.reducer';
 
-export const getState = createFeatureSelector(cryptoFeatureKey);
+export const getState = createFeatureSelector<State>(cryptoFeatureKey);
 
 export const selectTableList = createSelector(
   getState,

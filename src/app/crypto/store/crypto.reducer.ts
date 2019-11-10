@@ -15,7 +15,15 @@ export const initialState: State = {
 const cryptoReducer = createReducer(
   initialState,
   on(CryptoActions.resetAssets, state => ({ tableList: [], cardList: [] })),
-  on(CryptoActions.setAssets, (state, { newAssets }) => ({ tableList: newAssets.tableList, cardList: newAssets.cardList }))
+  on(CryptoActions.setAssets, (state, { newAssets }) => ({ tableList: newAssets.tableList, cardList: newAssets.cardList })),
+  on(CryptoActions.addToTableList, (state, { newItem }) => ({
+    tableList: [...state.tableList, newItem],
+    cardList: [...state.cardList]
+  })),
+  on(CryptoActions.addToCardList, (state, { newItem }) => ({
+    tableList: [...state.tableList],
+    cardList: [...state.cardList, newItem]
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

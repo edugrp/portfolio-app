@@ -15,10 +15,20 @@ export const initialState: State = {
 const myWalletReducer = createReducer(
   initialState,
   on(MyWalletActions.resetAssets, state => ({ stockList: [], cryptoList: [] })),
-  on(MyWalletActions.setAssets, (state, { newAssets }) => ({ stockList: newAssets.stockList, cryptoList: newAssets.cryptoList }))
+  on(MyWalletActions.setAssets, (state, { newAssets }) => ({
+    stockList: newAssets.stockList,
+    cryptoList: newAssets.cryptoList
+  })),
+  on(MyWalletActions.addStock, (state, { newStock }) => ({
+    stockList: [...state.stockList, newStock],
+    cryptoList: [...state.cryptoList]
+  })),
+  on(MyWalletActions.addCrypto, (state, { newCrypto }) => ({
+    stockList: [...state.stockList],
+    cryptoList: [...state.cryptoList, newCrypto]
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
   return myWalletReducer(state, action);
 }
-

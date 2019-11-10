@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { State, stockFeatureKey } from './stock.reducer';
 
-export const getState = createFeatureSelector(stockFeatureKey);
+export const getState = createFeatureSelector<State>(stockFeatureKey);
 
 export const selectTableList = createSelector(
   getState,

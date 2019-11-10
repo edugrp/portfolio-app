@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetTypes } from '@core/models/asset';
 import { Store } from '@ngrx/store';
-import { resetAssets, setAssets } from '../../store/stock.actions';
+import { resetAssets, setAssets, addToTableList, addToCardList } from '../../store/stock.actions';
 import * as fromStock from '../../store/stock.reducer';
 import * as stockSelectors from '../../store/stock.selectors';
 
@@ -26,10 +26,14 @@ export class StockDashboardComponent implements OnInit {
       this.cardList = list;
     });
   }
-  public onNewAsset = (newAsset, assetType) => {
+  public onNewAsset = (newAsset, addTo) => {
     if (newAsset.length > 0) {
       console.log(newAsset);
-      this.store.dispatch(setAssets( {newAssets: { tableList: [...this.tableList, newAsset], cardList: [...this.cardList]}}));
+      if (addTo === 'tableList') {
+        this.store.dispatch(addToTableList({newItem: newAsset}));
+      } else if (addTo === 'cardList') {
+        this.store.dispatch(addToCardList({newItem: newAsset}));
+      }
     }
   }
 

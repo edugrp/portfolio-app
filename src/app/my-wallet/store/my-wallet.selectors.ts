@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { State, myWalletFeatureKey } from './my-wallet.reducer';
 
-export const getState = createFeatureSelector(myWalletFeatureKey);
+export const getState = createFeatureSelector<State>(myWalletFeatureKey);
 
 export const selectStockList = createSelector(
   getState,

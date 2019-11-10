@@ -1,4 +1,4 @@
 <div fxFlex fxLayout="column" fxLayoutGap="10px" style="height: 100vh">
   <app-watch-table [watchList]='stockList' [assetType]='stockType' (onNewAsset)='onNewAsset($event, stockType)'></app-watch-table>
-  <app-watch-table [watchList]='cryptoList' [assetType]='cryptoType'></app-watch-table>
+  <app-watch-table [watchList]='cryptoList' [assetType]='cryptoType' (onNewAsset)='onNewAsset($event, cryptoType)'></app-watch-table>
 </div>
