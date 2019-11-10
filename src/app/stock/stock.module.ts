@@ -6,12 +6,16 @@ import * as fromComponents from './components';
 
 import { StockRoutingModule } from './stock-routing.module';
 
+import { StoreModule } from '@ngrx/store';
+import * as fromStock from './store/stock.reducer';
+
 @NgModule({
   declarations: [fromComponents.components],
   imports: [
     CommonModule,
     SharedModule,
-    StockRoutingModule
+    StockRoutingModule,
+    StoreModule.forFeature(fromStock.stockFeatureKey, {assets: fromStock.reducer })
   ]
 })
 export class StockModule { }

@@ -6,12 +6,16 @@ import * as fromComponents from './components';
 
 import { CryptoRoutingModule } from './crypto-routing.module';
 
+import { StoreModule } from '@ngrx/store';
+import * as fromCrypto from './store/crypto.reducer';
+
 @NgModule({
   declarations: [fromComponents.components],
   imports: [
     CommonModule,
     SharedModule,
-    CryptoRoutingModule
+    CryptoRoutingModule,
+    StoreModule.forFeature(fromCrypto.cryptoFeatureKey, {assets: fromCrypto.reducer })
   ]
 })
 export class CryptoModule { }
