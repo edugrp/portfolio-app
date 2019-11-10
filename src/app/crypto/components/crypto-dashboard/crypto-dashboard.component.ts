@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetTypes } from '@core/models/asset';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { resetAssets, setAssets } from '../../store/crypto.actions';
 import * as fromCrypto from '../../store/crypto.reducer';
+import * as cryptoSelectors from '../../store/crypto.selectors';
 
 @Component({
   selector: 'app-crypto-dashboard',
@@ -16,18 +17,17 @@ export class CryptoDashboardComponent implements OnInit {
   assetType = AssetTypes.CRYPTO;
 
   constructor(
-    private store: Store<any>
+    private store: Store<fromCrypto.State>
   ) {
   }
 
   ngOnInit() {
-    this.store
-      .select<any>(fromCrypto.cryptoFeatureKey)
-      .subscribe(cryptoState => {
-        console.log(cryptoState.assets);
-        this.tableList = cryptoState.assets.tableList;
-        this.cardList = cryptoState.assets.cardList;
-      });
+    this.store.select(cryptoSelectors.selectTableList).subscribe(list => {
+      this.tableList = list;
+    });
+    this.store.select(cryptoSelectors.selectCardList).subscribe(list => {
+      this.cardList = list;
+    });
   }
   public onNewAsset = (newAsset, assetType) => {
     if (newAsset.length > 0) {

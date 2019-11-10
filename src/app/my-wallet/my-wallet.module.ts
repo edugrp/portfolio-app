@@ -15,7 +15,7 @@ import * as fromMyWallet from './store/my-wallet.reducer';
     CommonModule,
     SharedModule,
     MyWalletRoutingModule,
-    StoreModule.forFeature(fromMyWallet.myWalletFeatureKey, {assets: fromMyWallet.reducer })
+    StoreModule.forFeature(fromMyWallet.myWalletFeatureKey, fromMyWallet.reducer)
   ]
 })
 export class MyWalletModule { }

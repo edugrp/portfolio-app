@@ -15,7 +15,7 @@ import * as fromCrypto from './store/crypto.reducer';
     CommonModule,
     SharedModule,
     CryptoRoutingModule,
-    StoreModule.forFeature(fromCrypto.cryptoFeatureKey, {assets: fromCrypto.reducer })
+    StoreModule.forFeature(fromCrypto.cryptoFeatureKey, fromCrypto.reducer)
   ]
 })
 export class CryptoModule { }

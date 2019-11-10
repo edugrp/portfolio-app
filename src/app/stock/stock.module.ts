@@ -15,7 +15,7 @@ import * as fromStock from './store/stock.reducer';
     CommonModule,
     SharedModule,
     StockRoutingModule,
-    StoreModule.forFeature(fromStock.stockFeatureKey, {assets: fromStock.reducer })
+    StoreModule.forFeature(fromStock.stockFeatureKey, fromStock.reducer)
   ]
 })
 export class StockModule { }

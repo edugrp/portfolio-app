@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetTypes } from '@core/models/asset';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { resetAssets, setAssets } from '../../store/my-wallet.actions';
 import * as fromMyWallet from '../../store/my-wallet.reducer';
+import * as myWalletSelectors from '../../store/my-wallet.selectors';
 
 import { Observable, of } from 'rxjs';
 
@@ -17,16 +18,15 @@ export class MyWalletDashboardComponent implements OnInit {
   stockType = AssetTypes.STOCK;
   cryptoType = AssetTypes.CRYPTO;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<fromMyWallet.State>) {}
 
   ngOnInit() {
-    this.store
-      .select<any>(fromMyWallet.myWalletFeatureKey)
-      .subscribe(myWalletState => {
-        console.log(myWalletState.assets);
-        this.stockList = myWalletState.assets.stockList;
-        this.cryptoList = myWalletState.assets.cryptoList;
-      });
+    this.store.select(myWalletSelectors.selectStockList).subscribe(list => {
+      this.stockList = list;
+    });
+    this.store.select(myWalletSelectors.selectCryptoList).subscribe(list => {
+      this.cryptoList = list;
+    });
   }
   public onNewAsset = (newAsset, assetType) => {
     if (newAsset.length > 0) {

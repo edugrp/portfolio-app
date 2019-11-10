@@ -21,3 +21,4 @@ const myWalletReducer = createReducer(
 export function reducer(state: State | undefined, action: Action) {
   return myWalletReducer(state, action);
 }
+
