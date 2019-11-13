@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { AssetTypes } from '@core/models/asset';
-import { Store } from '@ngrx/store';
-import { resetAssets, setAssets, addStock, addCrypto } from '../../store/my-wallet.actions';
-import * as fromMyWallet from '../../store/my-wallet.reducer';
-import * as myWalletSelectors from '../../store/my-wallet.selectors';
-
-import { Observable, of } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { AssetTypes } from "@core/models/asset";
+import { Store } from "@ngrx/store";
+import {
+  resetAssets,
+  setAssets,
+  addStock,
+  addCrypto
+} from "../../store/my-wallet.actions";
+import * as fromMyWallet from "../../store/my-wallet.reducer";
+import * as myWalletSelectors from "../../store/my-wallet.selectors";
 
 @Component({
-  selector: 'app-my-wallet-dashboard',
-  templateUrl: './my-wallet-dashboard.component.html',
-  styleUrls: ['./my-wallet-dashboard.component.css']
+  selector: "app-my-wallet-dashboard",
+  templateUrl: "./my-wallet-dashboard.component.html",
+  styleUrls: ["./my-wallet-dashboard.component.css"]
 })
 export class MyWalletDashboardComponent implements OnInit {
   stockList = [];
@@ -34,10 +37,10 @@ export class MyWalletDashboardComponent implements OnInit {
     if (newAsset.length > 0) {
       console.log(newAsset);
       if (assetType === AssetTypes.STOCK) {
-        this.store.dispatch(addStock({newStock: newAsset}));
+        this.store.dispatch(addStock({ newStock: newAsset }));
       } else if (assetType === AssetTypes.CRYPTO) {
-        this.store.dispatch(addCrypto({newCrypto: newAsset}));
+        this.store.dispatch(addCrypto({ newCrypto: newAsset }));
       }
     }
-  }
+  };
 }
