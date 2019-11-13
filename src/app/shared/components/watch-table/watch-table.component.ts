@@ -17,13 +17,14 @@ export class WatchTableComponent implements OnInit, OnChanges {
     'change',
     'latestTime'
   ];
+
   @Input() watchList: string[];
   @Input() assetType: AssetTypes;
-  @Output() onNewAsset = new EventEmitter();
+  @Input() assetList: Asset[];
+  @Output() newAssetAdded = new EventEmitter();
 
 
   quotes: Quote[] = [];
-  assetList: Asset[] = [];
 
   constructor(
     private stockService: StockService,
@@ -32,15 +33,6 @@ export class WatchTableComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    if (this.assetType === AssetTypes.STOCK) {
-      this.stockService.getAll().subscribe(list => {
-        this.assetList = list;
-      });
-    } else if (this.assetType === AssetTypes.CRYPTO) {
-      this.cryptoService.getAll().subscribe(list => {
-        this.assetList = list;
-      });
-    }
     this.updateQuotes();
   }
 
@@ -71,10 +63,8 @@ export class WatchTableComponent implements OnInit, OnChanges {
 
   public onAddAsset = (newAsset) => {
     if (newAsset.length > 0) {
-      this.onNewAsset.emit(newAsset);
-      // this.watchList.push(newAsset);
+      this.newAssetAdded.emit(newAsset);
       this.openSnackBar(newAsset + ' added!', 'X');
-      // this.updateQuotes();
     }
   }
 

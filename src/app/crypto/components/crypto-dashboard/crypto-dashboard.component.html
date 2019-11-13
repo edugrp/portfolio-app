@@ -2,7 +2,8 @@
   <app-watch-table
     [watchList]="tableList"
     [assetType]="assetType"
-    (onNewAsset)="onNewAsset($event, 'tableList')"
+    [assetList]='allCryptos'
+    (newAssetAdded)="onNewAsset($event, 'tableList')"
   ></app-watch-table>
   <app-card-list [watchList]="cardList" [assetType]="assetType" (onNewAsset)="onNewAsset($event, 'cardList')"
   ></app-card-list>
