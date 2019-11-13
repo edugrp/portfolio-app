@@ -8,6 +8,8 @@ import { CryptoRoutingModule } from './crypto-routing.module';
 
 import { StoreModule } from '@ngrx/store';
 import * as fromCrypto from './store/crypto.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CryptoEffects } from './store/crypto.effects';
 
 @NgModule({
   declarations: [fromComponents.components],
@@ -15,7 +17,8 @@ import * as fromCrypto from './store/crypto.reducer';
     CommonModule,
     SharedModule,
     CryptoRoutingModule,
-    StoreModule.forFeature(fromCrypto.cryptoFeatureKey, fromCrypto.reducer)
+    StoreModule.forFeature(fromCrypto.cryptoFeatureKey, fromCrypto.reducer),
+    EffectsModule.forFeature([CryptoEffects])
   ]
 })
 export class CryptoModule { }

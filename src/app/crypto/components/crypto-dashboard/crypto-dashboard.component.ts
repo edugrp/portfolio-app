@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetTypes, Asset } from '@core/models/asset';
 import { Store } from '@ngrx/store';
-import { resetAssets, setAssets, addToTableList, addToCardList } from '../../store/crypto.actions';
+import { addToTableListStarted, addToCardListStarted } from '../../store/crypto.actions';
 import * as fromCrypto from '../../store/crypto.reducer';
 import * as cryptoSelectors from '../../store/crypto.selectors';
 
@@ -25,7 +25,6 @@ export class CryptoDashboardComponent implements OnInit {
     private coreStore: Store<fromCore.State>
   ) {
   }
-
   ngOnInit() {
     this.store.select(cryptoSelectors.selectTableList).subscribe(list => {
       this.tableList = list;
@@ -37,13 +36,13 @@ export class CryptoDashboardComponent implements OnInit {
       this.allCryptos = list;
     });
   }
-  public onNewAsset = (newAsset, addTo) => {
-    if (newAsset.length > 0) {
-      console.log(newAsset);
+  public onNewAsset = (symbol, addTo) => {
+    if (symbol.length > 0) {
+      console.log(symbol);
       if (addTo === 'tableList') {
-        this.store.dispatch(addToTableList({newItem: newAsset}));
+        this.store.dispatch(addToTableListStarted({symbol}));
       } else if (addTo === 'cardList') {
-        this.store.dispatch(addToCardList({newItem: newAsset}));
+        this.store.dispatch(addToCardListStarted({symbol}));
       }
     }
   }

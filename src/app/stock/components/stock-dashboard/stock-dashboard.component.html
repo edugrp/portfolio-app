@@ -1,10 +1,12 @@
 <div fxFlex fxLayout="column" fxLayoutGap="10px" style="height: 100vh">
   <app-watch-table
-    [watchList]="tableList"
-    [assetType]="assetType"
-    [assetList]='allStocks'
+    [quotes]="tableList"
+    [assetList]="allStocks"
     (newAssetAdded)="onNewAsset($event, 'tableList')"
   ></app-watch-table>
-  <app-card-list [watchList]="cardList" [assetType]="assetType" (onNewAsset)="onNewAsset($event, 'cardList')"
+  <app-card-list
+    [quotes]="cardList"
+    [assetType]="assetType"
+    (onNewAsset)="onNewAsset($event, 'cardList')"
   ></app-card-list>
 </div>

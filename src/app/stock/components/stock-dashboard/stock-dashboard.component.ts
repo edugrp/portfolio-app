@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetTypes, Asset } from '@core/models/asset';
 import { Store } from '@ngrx/store';
-import {
-  resetAssets,
-  setAssets,
-  addToTableList,
-  addToCardList
-} from '../../store/stock.actions';
+import { addToTableListStarted, addToCardListStarted } from '../../store/stock.actions';
 import * as fromStock from '../../store/stock.reducer';
 import * as stockSelectors from '../../store/stock.selectors';
 import * as fromCore from '@core/store/core.reducer';
@@ -26,7 +21,8 @@ export class StockDashboardComponent implements OnInit {
   constructor(
     private store: Store<fromStock.State>,
     private coreStore: Store<fromCore.State>
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.store.select(stockSelectors.selectTableList).subscribe(list => {
@@ -40,14 +36,15 @@ export class StockDashboardComponent implements OnInit {
     });
   }
 
-  public onNewAsset = (newAsset, addTo) => {
-    if (newAsset.length > 0) {
-      console.log(newAsset);
+  public onNewAsset = (symbol, addTo) => {
+    if (symbol.length > 0) {
+      console.log(symbol);
       if (addTo === 'tableList') {
-        this.store.dispatch(addToTableList({ newItem: newAsset }));
+        this.store.dispatch(addToTableListStarted({symbol}));
       } else if (addTo === 'cardList') {
-        this.store.dispatch(addToCardList({ newItem: newAsset }));
+        this.store.dispatch(addToCardListStarted({symbol}));
       }
     }
-  };
+  }
+
 }

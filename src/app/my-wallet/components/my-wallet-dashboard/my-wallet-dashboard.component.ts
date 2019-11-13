@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AssetTypes, Asset } from '@core/models/asset';
+import { AssetTypes, Asset, Quote } from '@core/models/asset';
+
 import { Store } from '@ngrx/store';
-import {
-  resetAssets,
-  setAssets,
-  addStock,
-  addCrypto
-} from '../../store/my-wallet.actions';
 import * as fromMyWallet from '../../store/my-wallet.reducer';
 import * as myWalletSelectors from '../../store/my-wallet.selectors';
+import { addStockStarted, addCryptoStarted } from './../../store/my-wallet.actions';
 import * as fromCore from '@core/store/core.reducer';
 import * as coreSelectors from '@core/store/core.selectors';
 
@@ -18,8 +14,8 @@ import * as coreSelectors from '@core/store/core.selectors';
   styleUrls: ['./my-wallet-dashboard.component.css']
 })
 export class MyWalletDashboardComponent implements OnInit {
-  stockList = [];
-  cryptoList = [];
+  stockList: Quote[] = [];
+  cryptoList: Quote[] = [];
   stockType = AssetTypes.STOCK;
   cryptoType = AssetTypes.CRYPTO;
   allStocks: Asset[] = [];
@@ -45,14 +41,14 @@ export class MyWalletDashboardComponent implements OnInit {
     });
   }
 
-  public onNewAsset = (newAsset, assetType) => {
-    if (newAsset.length > 0) {
-      console.log(newAsset);
+  public onNewAsset = (symbol, assetType) => {
+    if (symbol.length > 0) {
+      console.log(symbol);
       if (assetType === AssetTypes.STOCK) {
-        this.store.dispatch(addStock({ newStock: newAsset }));
+        this.store.dispatch(addStockStarted({ symbol }));
       } else if (assetType === AssetTypes.CRYPTO) {
-        this.store.dispatch(addCrypto({ newCrypto: newAsset }));
+        this.store.dispatch(addCryptoStarted({ symbol }));
       }
     }
-  };
+  }
 }

@@ -1,21 +1,22 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as CryptoActions from './crypto.actions';
+import { Quote } from '@core/models/asset';
 
 export const cryptoFeatureKey = 'cryptoFeature';
 
 export interface State {
-  tableList: string[];
-  cardList: string[];
+  tableList: Quote[];
+  cardList: Quote[];
 }
 export const initialState: State = {
-  tableList: ['BTC', 'LTC'],
-  cardList: ['BTC', 'LTC', 'DOGE', 'ETH', 'XRP']
+  tableList: [], // 'BTC', 'LTC'
+  cardList: [] // 'BTC', 'LTC', 'DOGE', 'ETH', 'XRP'
 };
 
 const cryptoReducer = createReducer(
   initialState,
   on(CryptoActions.resetAssets, state => ({ tableList: [], cardList: [] })),
-  on(CryptoActions.setAssets, (state, { newAssets }) => ({ tableList: newAssets.tableList, cardList: newAssets.cardList })),
+  on(CryptoActions.setAssets, (state, { tableList, cardList }) => ({ tableList, cardList })),
   on(CryptoActions.addToTableList, (state, { newItem }) => ({
     tableList: [...state.tableList, newItem],
     cardList: [...state.cardList]
