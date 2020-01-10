@@ -11,16 +11,24 @@ import { CardDetailComponent } from './components/card-detail/card-detail.compon
 import { CardListComponent } from './components/card-list/card-list.component';
 import { WatchTableComponent } from './components/watch-table/watch-table.component';
 import { ButtonAddAssetComponent } from './components/button-add-asset/button-add-asset.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
-  declarations: [...fromComponents.components, CardDetailComponent, CardListComponent, WatchTableComponent, ButtonAddAssetComponent],
+  declarations: [
+    ...fromComponents.components,
+    CardDetailComponent,
+    CardListComponent,
+    WatchTableComponent,
+    ButtonAddAssetComponent,
+    HomeComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MaterialModule,
+    MaterialModule
   ],
   exports: [
     FormsModule,
@@ -30,4 +38,4 @@ import { ButtonAddAssetComponent } from './components/button-add-asset/button-ad
     ...fromComponents.components
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

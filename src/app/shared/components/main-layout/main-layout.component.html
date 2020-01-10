@@ -1,10 +1,20 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" role="navigation" class="sidenav-position">
-      <app-sidenav-menu (sidenavClose)="sidenav.close()"></app-sidenav-menu>
+    <app-sidenav-menu
+      (sidenavClose)="sidenav.close()"
+      (logoutEvent)="logout()"
+      [isLoggedIn]="isLoggedIn$ | async"
+      [isLoggedOut]="isLoggedOut$ | async"
+    ></app-sidenav-menu>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+    <app-header
+      (sidenavToggle)="sidenav.toggle()"
+      (logoutEvent)="logout()"
+      [isLoggedIn]="isLoggedIn$ | async"
+      [isLoggedOut]="isLoggedOut$ | async"
+    ></app-header>
     <main>
       <router-outlet></router-outlet>
     </main>

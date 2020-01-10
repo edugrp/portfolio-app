@@ -15,7 +15,8 @@ export class RapidApiService {
   constructor(private http: HttpClient) { }
 
   public getCryptoAll = (): Observable<CryptoApi[]> => {
-    const url = 'https://bravenewcoin-v1.p.rapidapi.com/digital-currency-symbols';
+    // const url = 'https://bravenewcoin-v1.p.rapidapi.com/digital-currency-symbols';
+    const url = '/api/cryptos/digital-currency-symbols';
     const headers = new  HttpHeaders().set('x-rapidapi-host', 'bravenewcoin-v1.p.rapidapi.com')
                                       .set('x-rapidapi-key', '329ec522d2mshb54fc83b8df4ad3p124762jsnc7119e95b2fa');
 
@@ -40,7 +41,8 @@ export class RapidApiService {
   }
 
   public getCryptoTicker = (symbol: string): Observable<CryptoTickerApi> => {
-    const url = 'https://bravenewcoin-v1.p.rapidapi.com/ticker?coin=' + symbol;
+    // const url = 'https://bravenewcoin-v1.p.rapidapi.com/ticker?coin=' + symbol;
+    const url = '/api/cryptos/ticker?coin=' + symbol;
     const headers = new  HttpHeaders().set('x-rapidapi-host', 'bravenewcoin-v1.p.rapidapi.com')
                                       .set('x-rapidapi-key', '329ec522d2mshb54fc83b8df4ad3p124762jsnc7119e95b2fa');
 
@@ -52,7 +54,8 @@ export class RapidApiService {
   }
 
   public getStockTicker = (symbol: string): Observable<StockTickerApi> => {
-    const url = 'https://investors-exchange-iex-trading.p.rapidapi.com/stock/' + symbol + '/book';
+    // const url = 'https://investors-exchange-iex-trading.p.rapidapi.com/stock/' + symbol + '/book';
+    const url = '/api/stocks/' + symbol + '/book';
     const headers = new  HttpHeaders().set('x-rapidapi-host', 'investors-exchange-iex-trading.p.rapidapi.com')
                                       .set('x-rapidapi-key', '329ec522d2mshb54fc83b8df4ad3p124762jsnc7119e95b2fa');
 

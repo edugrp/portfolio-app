@@ -12,28 +12,27 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     CoreModule,
     BrowserModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
+      logOnly: environment.production // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([])
   ],
-  exports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [],
+  exports: [BrowserModule, BrowserAnimationsModule],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

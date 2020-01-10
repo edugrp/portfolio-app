@@ -1,11 +1,20 @@
-<mat-nav-list>
-    <a mat-list-item routerLink="/my-wallet" (click)="onSidenavClose()">
-        <mat-icon>account_balance</mat-icon> <span class="nav-caption">My Wallet</span>
-    </a>
-    <a mat-list-item routerLink="/stocks" (click)="onSidenavClose()">
-        <mat-icon>attach_money</mat-icon> <span class="nav-caption">Stocks</span>
-    </a>
-    <a mat-list-item routerLink="/cryptos" (click)="onSidenavClose()">
-        <mat-icon>monetization_on</mat-icon><span class="nav-caption">Cryptos</span>
-    </a>
-  </mat-nav-list>
+<mat-nav-list *ngIf="isLoggedOut">
+  <a mat-list-item routerLink="/home/login" (click)="onSidenavClose()">
+    <mat-icon>account_circle</mat-icon><span class="nav-caption">Login</span>
+  </a>
+</mat-nav-list>
+<mat-nav-list *ngIf="isLoggedIn">
+  <a mat-list-item routerLink="/my-wallet" (click)="onSidenavClose()">
+    <mat-icon>account_balance</mat-icon>
+    <span class="nav-caption">My Wallet</span>
+  </a>
+  <a mat-list-item routerLink="/stocks" (click)="onSidenavClose()">
+    <mat-icon>attach_money</mat-icon> <span class="nav-caption">Stocks</span>
+  </a>
+  <a mat-list-item routerLink="/cryptos" (click)="onSidenavClose()">
+    <mat-icon>monetization_on</mat-icon><span class="nav-caption">Cryptos</span>
+  </a>
+  <a mat-list-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon><span class="nav-caption">Logout</span>
+  </a>
+</mat-nav-list>

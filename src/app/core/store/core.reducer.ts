@@ -1,8 +1,8 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import * as CoreActions from './core.actions';
-import { Asset } from '@core/models/asset';
+import { Action, createReducer, on } from "@ngrx/store";
+import * as CoreActions from "./core.actions";
+import { Asset } from "@core/models/asset";
 
-export const coreFeatureKey = 'coreFeature';
+export const coreFeatureKey = "coreFeature";
 
 export interface State {
   stockList: Asset[];
@@ -16,8 +16,14 @@ export const initialState: State = {
 const coreReducer = createReducer(
   initialState,
   on(CoreActions.resetAssets, state => ({ stockList: [], cryptoList: [] })),
-  on(CoreActions.setStockList, (state, { payload }) => ({ stockList: payload, cryptoList: [...state.cryptoList] })),
-  on(CoreActions.setCryptoList, (state, { payload }) => ({ stockList: [...state.stockList], cryptoList: payload })),
+  on(CoreActions.setStockList, (state, { payload }) => ({
+    ...state,
+    stockList: payload
+  })),
+  on(CoreActions.setCryptoList, (state, { payload }) => ({
+    ...state,
+    cryptoList: payload
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

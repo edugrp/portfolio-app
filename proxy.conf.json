@@ -1,0 +1,20 @@
+{
+  "/api/cryptos/**": {
+    "target": "https://bravenewcoin-v1.p.rapidapi.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/cryptos": ""
+    }
+  },
+  "/api/stocks/**": {
+    "target": "https://investors-exchange-iex-trading.p.rapidapi.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/stocks": "/stock"
+    }
+  }
+}
